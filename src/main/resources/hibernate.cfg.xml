@@ -14,5 +14,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
         <mapping class="ru.job4j.model.User" />
+        <mapping class="ru.job4j.model.PriceHistory" />
+        <mapping class="ru.job4j.model.Post" />
     </session-factory>
 </hibernate-configuration>
