@@ -1,12 +1,13 @@
 package ru.job4j.repository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 import ru.job4j.model.User;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
+@Repository
 @AllArgsConstructor
 public class UserRepository {
     private final CrudRepository repository;
