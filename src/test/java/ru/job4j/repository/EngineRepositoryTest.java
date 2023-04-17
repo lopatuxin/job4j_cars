@@ -49,7 +49,7 @@ class EngineRepositoryTest {
     public void whenUpdateEngine() {
         Engine engine = new Engine(1, "test");
         engineRepository.add(engine);
-        Engine updatingEngine = new Engine(engine.getId(), "test2");
+        Engine updatingEngine = new Engine(engine.getId(), "test1");
         engineRepository.update(updatingEngine);
         assertThat(updatingEngine.getName())
                 .isEqualTo(engineRepository.findById(updatingEngine.getId()).get().getName());
