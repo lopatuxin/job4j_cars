@@ -13,7 +13,7 @@ public class OwnerRepository {
     private final CrudRepository repository;
 
     public Owner add(Owner owner) {
-        repository.run(session -> session.persist(owner));
+        repository.run(session -> session.save(owner));
         return owner;
     }
 

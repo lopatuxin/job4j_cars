@@ -11,7 +11,7 @@
         <property name="hibernate.connection.pool_size">1</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
 
         <mapping class="ru.job4j.model.User" />
         <mapping class="ru.job4j.model.PriceHistory" />
@@ -19,5 +19,6 @@
         <mapping class="ru.job4j.model.Car" />
         <mapping class="ru.job4j.model.Engine" />
         <mapping class="ru.job4j.model.Owner" />
+        <mapping class="ru.job4j.model.File" />
     </session-factory>
 </hibernate-configuration>

@@ -13,7 +13,7 @@ public class EngineRepository {
     private final CrudRepository repository;
 
     public Engine add(Engine engine) {
-        repository.run(session -> session.persist(engine));
+        repository.run(session -> session.save(engine));
         return engine;
     }
 

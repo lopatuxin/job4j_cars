@@ -13,7 +13,7 @@ public class CarRepository {
     private final CrudRepository repository;
 
     public Car add(Car car) {
-        repository.run(session -> session.persist(car));
+        repository.run(session -> session.save(car));
         return car;
     }
 
