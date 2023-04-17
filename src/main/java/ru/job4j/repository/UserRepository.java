@@ -26,16 +26,20 @@ public class UserRepository {
      * Обновить в базе пользователя.
      * @param user пользователь.
      */
-    public void update(User user) {
-        repository.run(session -> session.merge(user));
+    public boolean update(User user) {
+
+        return repository.booleanRun(session -> {
+            session.merge(user);
+            return true;
+        });
     }
 
     /**
      * Удалить пользователя по id.
      * @param userId ID
      */
-    public void delete(int userId) {
-        repository.run(
+    public boolean delete(int userId) {
+        return repository.booleanRun(
                 "delete from User where id = :fId",
                 Map.of("fId", userId)
         );

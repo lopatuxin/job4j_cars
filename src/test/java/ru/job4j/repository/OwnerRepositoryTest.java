@@ -7,20 +7,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.config.HbmTestConfig;
-import ru.job4j.model.Car;
-import ru.job4j.model.Engine;
 import ru.job4j.model.Owner;
 import ru.job4j.model.User;
 
-import java.util.Set;
-
 import static org.assertj.core.api.Assertions.*;
 
-class CarRepositoryTest {
+class OwnerRepositoryTest {
     private static SessionFactory sf;
     private final CrudRepository crudRepository = new CrudRepository(sf);
-    private final CarRepository carRepository = new CarRepository(crudRepository);
-    private final EngineRepository engineRepository = new EngineRepository(crudRepository);
     private final OwnerRepository ownerRepository = new OwnerRepository(crudRepository);
     private final UserRepository userRepository = new UserRepository(crudRepository);
 
@@ -39,9 +33,7 @@ class CarRepositoryTest {
         Session session = sf.openSession();
         try {
             session.beginTransaction();
-            session.createQuery("DELETE FROM car").executeUpdate();
             session.createQuery("DELETE FROM auto_user").executeUpdate();
-            session.createQuery("DELETE FROM engine").executeUpdate();
             session.createQuery("DELETE FROM owners").executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -50,42 +42,32 @@ class CarRepositoryTest {
     }
 
     @Test
-    public void whenAddCarThenFindId() {
-        Engine engine = new Engine(1, "test");
-        engineRepository.add(engine);
+    public void whenAddOwner() {
         User user = new User(1, "test", "test");
         userRepository.create(user);
         Owner owner = new Owner(1, "test", user);
         ownerRepository.add(owner);
-        Car result = carRepository.add(new Car(1, "test", engine, Set.of(owner)));
-        assertThat(result).isEqualTo(carRepository.findById(result.getId()).get());
+        assertThat(owner).isEqualTo(ownerRepository.findById(owner.getId()).get());
     }
 
     @Test
-    public void whenDeleteCar() {
-        Engine engine = new Engine(1, "test");
-        engineRepository.add(engine);
+    public void whenDeleteOwner() {
         User user = new User(1, "test", "test");
         userRepository.create(user);
         Owner owner = new Owner(1, "test", user);
         ownerRepository.add(owner);
-        Car car = carRepository.add(new Car(1, "test", engine, Set.of(owner)));
-        boolean result = carRepository.delete(car.getId());
+        boolean result = ownerRepository.delete(owner.getId());
         assertThat(result).isTrue();
     }
 
     @Test
-    public void whenUpdateCar() {
-        Engine engine = new Engine(1, "test");
-        engineRepository.add(engine);
+    public void whenUpdateOwner() {
         User user = new User(1, "test", "test");
         userRepository.create(user);
         Owner owner = new Owner(1, "test", user);
         ownerRepository.add(owner);
-        carRepository.add(new Car(1, "test", engine, Set.of(owner)));
-        Car updateCar = new Car(1, "test2", engine, Set.of(owner));
-        boolean result = carRepository.update(updateCar);
-        assertThat(result).isTrue();
+        Owner updatingOwner = new Owner(owner.getId(), "test2", user);
+        ownerRepository.update(updatingOwner);
+        assertThat(updatingOwner.getName()).isEqualTo(ownerRepository.findById(owner.getId()).get().getName());
     }
-
 }

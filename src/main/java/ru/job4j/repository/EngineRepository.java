@@ -17,12 +17,15 @@ public class EngineRepository {
         return engine;
     }
 
-    public void update(Engine engine) {
-        repository.run(session -> session.merge(engine));
+    public boolean update(Engine engine) {
+        return repository.booleanRun(session -> {
+            session.merge(engine);
+            return true;
+        });
     }
 
-    public void delete(int id) {
-        repository.run(
+    public boolean delete(int id) {
+        return repository.booleanRun(
                 "delete from Engine where id = :fId",
                 Map.of("fId", id)
         );

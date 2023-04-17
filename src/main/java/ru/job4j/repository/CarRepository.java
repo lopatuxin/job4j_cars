@@ -17,12 +17,15 @@ public class CarRepository {
         return car;
     }
 
-    public void update(Car car) {
-        repository.run(session -> session.merge(car));
+    public boolean update(Car car) {
+        return repository.booleanRun(session -> {
+            session.merge(car);
+            return true;
+        });
     }
 
-    public void delete(int id) {
-        repository.run(
+    public boolean delete(int id) {
+        return repository.booleanRun(
                 "delete from Car where id = :fId",
                 Map.of("fId", id)
         );
