@@ -1,9 +1,7 @@
 package ru.job4j.repository;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.config.HbmTestConfig;
@@ -26,19 +24,6 @@ class OwnerRepositoryTest {
     @AfterAll
     public static void close() {
         sf.close();
-    }
-
-    @AfterEach
-    public void cleanDb() {
-        Session session = sf.openSession();
-        try {
-            session.beginTransaction();
-            session.createQuery("DELETE FROM auto_user").executeUpdate();
-            session.createQuery("DELETE FROM owners").executeUpdate();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            session.getTransaction().rollback();
-        }
     }
 
     @Test
