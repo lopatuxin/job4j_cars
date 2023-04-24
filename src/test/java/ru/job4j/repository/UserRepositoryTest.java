@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ru.job4j.config.HbmTestConfig;
+import ru.job4j.configuration.HbmTestConfig;
 import ru.job4j.model.User;
 
 import static org.assertj.core.api.Assertions.*;

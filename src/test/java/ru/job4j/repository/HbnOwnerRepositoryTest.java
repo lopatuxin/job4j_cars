@@ -4,16 +4,16 @@ import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import ru.job4j.config.HbmTestConfig;
+import ru.job4j.configuration.HbmTestConfig;
 import ru.job4j.model.Owner;
 import ru.job4j.model.User;
 
 import static org.assertj.core.api.Assertions.*;
 
-class OwnerRepositoryTest {
+class HbnOwnerRepositoryTest {
     private static SessionFactory sf;
     private final CrudRepository crudRepository = new CrudRepository(sf);
-    private final OwnerRepository ownerRepository = new OwnerRepository(crudRepository);
+    private final HbnOwnerRepository hbnOwnerRepository = new HbnOwnerRepository(crudRepository);
     private final UserRepository userRepository = new UserRepository(crudRepository);
 
     @BeforeAll
@@ -31,8 +31,8 @@ class OwnerRepositoryTest {
         User user = new User(1, "test", "test");
         userRepository.create(user);
         Owner owner = new Owner(1, "test", user);
-        ownerRepository.add(owner);
-        assertThat(owner).isEqualTo(ownerRepository.findById(owner.getId()).get());
+        hbnOwnerRepository.add(owner);
+        assertThat(owner).isEqualTo(hbnOwnerRepository.findById(owner.getId()).get());
     }
 
     @Test
@@ -40,8 +40,8 @@ class OwnerRepositoryTest {
         User user = new User(1, "test", "test");
         userRepository.create(user);
         Owner owner = new Owner(1, "test", user);
-        ownerRepository.add(owner);
-        boolean result = ownerRepository.delete(owner.getId());
+        hbnOwnerRepository.add(owner);
+        boolean result = hbnOwnerRepository.delete(owner.getId());
         assertThat(result).isTrue();
     }
 
@@ -50,9 +50,9 @@ class OwnerRepositoryTest {
         User user = new User(1, "test", "test");
         userRepository.create(user);
         Owner owner = new Owner(1, "test", user);
-        ownerRepository.add(owner);
+        hbnOwnerRepository.add(owner);
         Owner updatingOwner = new Owner(owner.getId(), "test2", user);
-        ownerRepository.update(updatingOwner);
-        assertThat(updatingOwner.getName()).isEqualTo(ownerRepository.findById(owner.getId()).get().getName());
+        hbnOwnerRepository.update(updatingOwner);
+        assertThat(updatingOwner.getName()).isEqualTo(hbnOwnerRepository.findById(owner.getId()).get().getName());
     }
 }

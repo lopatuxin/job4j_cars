@@ -1,4 +1,4 @@
-package ru.job4j.config;
+package ru.job4j.configuration;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

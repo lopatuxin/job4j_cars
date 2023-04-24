@@ -12,20 +12,11 @@ import java.util.Optional;
 public class UserRepository {
     private final CrudRepository repository;
 
-    /**
-     * Сохранить в базе.
-     * @param user пользователь.
-     * @return пользователь с id.
-     */
     public User create(User user) {
         repository.run(session -> session.save(user));
         return user;
     }
 
-    /**
-     * Обновить в базе пользователя.
-     * @param user пользователь.
-     */
     public boolean update(User user) {
 
         return repository.booleanRun(session -> {
@@ -34,10 +25,6 @@ public class UserRepository {
         });
     }
 
-    /**
-     * Удалить пользователя по id.
-     * @param userId ID
-     */
     public boolean delete(int userId) {
         return repository.booleanRun(
                 "delete from User where id = :fId",
@@ -45,18 +32,10 @@ public class UserRepository {
         );
     }
 
-    /**
-     * Список пользователь отсортированных по id.
-     * @return список пользователей.
-     */
     public List<User> findAllOrderById() {
         return repository.query("from User order by id asc", User.class);
     }
 
-    /**
-     * Найти пользователя по ID
-     * @return пользователь.
-     */
     public Optional<User> findById(int id) {
         return repository.optional(
                 "from User where id = :fId", User.class,
@@ -64,11 +43,6 @@ public class UserRepository {
         );
     }
 
-    /**
-     * Список пользователей по login LIKE %key%
-     * @param key key
-     * @return список пользователей.
-     */
     public List<User> findByLikeLogin(String key) {
         return repository.query(
                 "from User where login like :fKey", User.class,
@@ -76,11 +50,6 @@ public class UserRepository {
         );
     }
 
-    /**
-     * Найти пользователя по login.
-     * @param login login.
-     * @return Optional or user.
-     */
     public Optional<User> findByLogin(String login) {
         return repository.optional(
                 "from User where login = :fLogin", User.class,

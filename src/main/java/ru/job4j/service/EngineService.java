@@ -1,11 +1,11 @@
-package ru.job4j.repository;
+package ru.job4j.service;
 
 import ru.job4j.model.Engine;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface EngineRepository {
+public interface EngineService {
     Engine add(Engine engine);
     boolean update(Engine engine);
     boolean delete(int id);
