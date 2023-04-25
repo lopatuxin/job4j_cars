@@ -40,7 +40,7 @@ public class SimpleFileService implements FileService {
     public File save(FileDto fileDto, Post post) {
         var path = getNewFilePath(fileDto.getName());
         writeFileBytes(path, fileDto.getContent());
-        File file = new File(fileDto.getName(), path, post.getId());
+        File file = new File(fileDto.getName(), path);
         return fileRepository.save(file);
     }
 

@@ -15,7 +15,7 @@ public class HbnFileRepository implements FileRepository {
 
     @Override
     public File save(File file) {
-        repository.run(session -> session.persist(file));
+        repository.run(session -> session.save(file));
         return file;
     }
 
