@@ -1,6 +1,5 @@
 package ru.job4j.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -14,7 +13,6 @@ import java.util.List;
 @Data
 @Table(name = "auto_post")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@AllArgsConstructor
 @NoArgsConstructor
 public class Post {
     @Id
@@ -33,6 +31,6 @@ public class Post {
     private Car car;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "auto_post_id")
     private List<File> files = new ArrayList<>();
 }

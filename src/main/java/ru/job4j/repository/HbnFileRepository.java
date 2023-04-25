@@ -22,7 +22,7 @@ public class HbnFileRepository implements FileRepository {
     @Override
     public Optional<File> findById(int id) {
         return repository.optional(
-                "SELECT File WHERE id = :fId", File.class, Map.of("fId", id)
+                "SELECT i FROM File i WHERE i.id = :fId", File.class, Map.of("fId", id)
         );
     }
 

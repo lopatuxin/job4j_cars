@@ -1,8 +1,8 @@
 package ru.job4j.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "files")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@AllArgsConstructor
+@NoArgsConstructor
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +22,12 @@ public class File {
     @EqualsAndHashCode.Include
     private String path;
 
-    @Column(name = "post_id")
+    @Column(name = "auto_post_id")
     private int postId;
+
+    public File(String name, String path, int postId) {
+        this.name = name;
+        this.path = path;
+        this.postId = postId;
+    }
 }
