@@ -9,6 +9,7 @@ import ru.job4j.repository.PostRepository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -39,5 +40,25 @@ public class SimplePostService implements PostService {
 
     public List<Post> findByWithPhoto() {
         return postRepository.findByWithPhoto();
+    }
+
+    @Override
+    public List<Post> findAll() {
+        return postRepository.findAll();
+    }
+
+    @Override
+    public Optional<Post> findById(int id) {
+        return postRepository.findById(id);
+    }
+
+    @Override
+    public boolean update(Post post) {
+        return postRepository.update(post);
+    }
+
+    @Override
+    public boolean updateStatus(Post post) {
+        return postRepository.updateStatus(post);
     }
 }

@@ -34,35 +34,8 @@
         </div>
     </nav>
 
-    <section class="main-content">
-        <div class="container p-3">
-            <form class="mt-3" enctype="multipart/form-data">
-                <table class="table table-hover">
-                    <thead>
-                    <tr align="center" valign="middle">
-                        <th>Фото</th>
-                        <th>Марка</th>
-                        <th>Двигатель</th>
-                        <th>Цена, RUB.</th>
-                        <th>Дата создания</th>
-                        <th>Владелец</th>
-                        <th>Статус</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr align="center" th:each="post, postStat : ${posts}">
-                        <td><img th:src="@{/files/{fileId}(fileId=${files[postStat.index].id})}"
-                                 width="200" height="150" alt="No image" style="border-radius: 7%;"></td>
-                        <td><a th:text="${post.car.name}"  th:href="@{/posts/{postId}(postId=${post.id})}"></a></td>
-                        <td th:text="${post.car.engine.name}"></td>
-                        <td th:text="${post.car.price}"></td>
-                        <td th:text="${{post.created}}"></td>
-                        <td th:text="${post.user.name}"></td>
-                        <td th:text="${post.status}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </form>
-        </div>
-    </section>
+    <div class="container">
+        <h3 class="mt-3">Произошла ошибка</h3>
+        <p class="text-danger" th:text="${message}"></p>
+    </div>
 </html>

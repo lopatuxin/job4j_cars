@@ -29,7 +29,7 @@ public class UserController {
         if (savedUser == null) {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
         }
-        return "cars/list";
+        return "users/login";
     }
 
     @GetMapping({"/", "users/login"})

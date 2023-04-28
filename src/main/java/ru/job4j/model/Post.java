@@ -21,6 +21,7 @@ public class Post {
     private int id;
     private String description;
     private LocalDateTime created = LocalDateTime.now();
+    private boolean status;
 
     @ManyToOne
     @JoinColumn(name = "auto_user_id")

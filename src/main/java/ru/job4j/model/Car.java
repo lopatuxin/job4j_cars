@@ -21,6 +21,7 @@ public class Car {
     @EqualsAndHashCode.Include
     private int id;
     private String name;
+    private String price;
 
     @ManyToOne
     @JoinColumn(name = "engine_id", foreignKey = @ForeignKey(name = "ENGINE_ID_FK"))
